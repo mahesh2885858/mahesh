@@ -28,7 +28,29 @@ const NavBar = () => {
           <Link to={`/menu`}>Menu</Link>
           {state.isLoggedIn ? <p>Logout</p> : <Link to={`/login`}>Login</Link>}
           {state.isLoggedIn ? <Link to={`/profile`}>Profile</Link> : undefined}
-          {state.isLoggedIn ? <Link to={`/user/cart`}>Cart</Link> : undefined}
+          {state.isLoggedIn ? (
+            <Link to={`/user/cart`}>
+              Cart
+              <span className="cart-count">
+                (
+                {state.menu.reduce(
+                  (
+                    total: number,
+                    item: {
+                      name: string;
+                      id: string;
+                      quantity: number;
+                      unitPrice: number;
+                    }
+                  ) => {
+                    return (total += item.quantity);
+                  },
+                  0
+                )}
+                ){" "}
+              </span>
+            </Link>
+          ) : undefined}
         </div>
       </div>
     </nav>
