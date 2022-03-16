@@ -8,7 +8,6 @@ import Menu from "./components/user/before-login/Home/menu/Menu";
 
 function App() {
   const { state, dispatch } = useContext(context);
-  console.log(state.isLoggedIn);
   return (
     <>
       <NavBar />
