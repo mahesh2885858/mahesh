@@ -1,0 +1,29 @@
+.home-container {
+  width: 100%;
+  height: 100%;
+  background: url("./../../../../images/homehero.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.home-container > div {
+  display: inline-block;
+  margin-top: 10em;
+  margin-left: 5vw;
+  h1 {
+    color: white;
+    font-size: 3rem;
+  }
+  p {
+    color: rgb(240, 52, 83);
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+  .arrow-Right {
+    font-size: 5rem;
+    transition: 0.5s ease-in-out;
+  }
+  .arrow-Right:hover {
+    cursor: pointer;
+    transform: scale(1.15);
+  }
+}

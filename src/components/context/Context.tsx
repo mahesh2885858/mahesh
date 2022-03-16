@@ -8,7 +8,7 @@ type actionType = {
   type: string;
 };
 const initialState = {
-  isLoggedIn: false,
+  isLoggedIn: true,
   name: "mahesh",
 };
 export const context = createContext<any>({});
