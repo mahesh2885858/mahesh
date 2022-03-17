@@ -6,6 +6,7 @@ import NavBar from "./components/user/Navbar/NavBar";
 import "./app.scss";
 import Menu from "./components/user/before-login/Home/menu/Menu";
 import Profile from "./components/user/profile/Profile";
+import Cart from "./components/user/cart/Cart";
 
 function App() {
   const { state, dispatch } = useContext(context);
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<HomeBeforeLogin />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/user/cart" element={<Cart />} />
         </Routes>
       </div>
     </>

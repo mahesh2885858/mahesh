@@ -1,8 +1,17 @@
 .profile-container {
-  width: 100%;
+  width: 80%;
   height: 100%;
   display: flex;
   flex-direction: row;
-  .profile-img {
+  gap: 2em;
+  align-items: center;
+  margin: auto;
+  .profile-img,
+  .profile-details {
+    width: 50%;
+    height: 60%;
+    padding: 1em;
+    background: #eee;
+    box-shadow: 5px 5px 5px #123;
   }
 }
