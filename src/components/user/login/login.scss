@@ -1,0 +1,31 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2em;
+  width: 50%;
+  margin: auto;
+  height: 100%;
+  form {
+    display: flex;
+    flex-direction: column;
+    label {
+      margin: 1em;
+      margin-left: 1em;
+      font-size: 1rem;
+    }
+    input {
+      width: 90%;
+      margin-left: 1em;
+      padding: 0.5em;
+      font-size: 1.2rem;
+    }
+    button {
+      width: 30%;
+      font-size: 1rem;
+      padding: 0.5em;
+      margin-top: 1em;
+      margin: 1em auto;
+    }
+  }
+}
