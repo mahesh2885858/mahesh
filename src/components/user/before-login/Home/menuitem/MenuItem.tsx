@@ -1,4 +1,4 @@
-import React, { FC, useContext } from "react";
+import React, { FC, useContext, useEffect } from "react";
 import { context } from "../../../../context/Context";
 import "./menuitem.scss";
 type propsType = {
@@ -9,6 +9,7 @@ type propsType = {
 };
 const MenuItem = (props: any) => {
   const { state, dispatch } = useContext(context);
+
   const increaseCount = (id: string) => {
     dispatch({ type: "INCREASE", data: id });
   };
@@ -17,23 +18,23 @@ const MenuItem = (props: any) => {
   };
 
   return (
-    <div className="menu-item" key={props.item.id}>
+    <div className="menu-item" key={props.item._id}>
       <div>
-        <img src="item.jpg" alt={props.item.name} />
+        <img src="item.jpg" alt={props.item.itemName} />
       </div>
-      <p>{props.item.name}</p>
+      <p>{props.item.itemName}</p>
       <p>price: {props.item.unitPrice}</p>
       {state.isLoggedIn ? (
         <div>
           <button
             onClick={() => {
-              decreseCount(props.item.id);
+              decreseCount(props.item._id);
             }}
           >
             -
           </button>
           <span>{props.item.quantity}</span>
-          <button onClick={() => increaseCount(props.item.id)}>+</button>
+          <button onClick={() => increaseCount(props.item._id)}>+</button>
         </div>
       ) : undefined}
     </div>

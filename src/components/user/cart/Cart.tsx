@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { context } from "../../context/Context";
 import "./cart.scss";
 type itemType = {
-  name: string;
-  id: string;
+  itemName: string;
+  _id: string;
   quantity: number;
   unitPrice: number;
 };
@@ -19,7 +19,7 @@ const Cart = () => {
   console.log(totalCost);
   return (
     <div className="cart-container">
-      <div>
+      <div className="cart-table-container">
         <table>
           <thead>
             <tr>
@@ -32,8 +32,8 @@ const Cart = () => {
           <tbody>
             {orderedItems.map((item) => {
               return (
-                <tr key={item.id}>
-                  <td>{item.name}</td>
+                <tr key={item._id}>
+                  <td>{item.itemName}</td>
                   <td>{item.quantity}</td>
                   <td>{item.unitPrice}</td>
                   <td>{item.quantity * item.unitPrice}</td>

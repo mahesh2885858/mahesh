@@ -13,19 +13,19 @@ const initialState = {
       name: "Dosa",
       unitPrice: 20,
       quantity: 0,
-      id: "123",
+      _id: "123",
     },
     {
       name: "Idly",
       unitPrice: 30,
       quantity: 0,
-      id: "1234",
+      _id: "1234",
     },
     {
       name: "Vada",
       unitPrice: 10,
       quantity: 0,
-      id: "asf",
+      _id: "asf",
     },
   ],
 };
@@ -34,18 +34,20 @@ const Reducer = (state: state, action: actionType): state => {
   switch (action.type) {
     case "LOGIN":
       return { ...state, isLoggedIn: true };
+    // to increase the order count
     case "INCREASE":
       const newMenu = state.menu.map((item) => {
-        if (item.id === action.data) {
+        if (item._id === action.data) {
           return { ...item, quantity: item.quantity + 1 };
         } else {
           return item;
         }
       });
       return { ...state, menu: newMenu };
+    // to decrease the order count
     case "DECREASE":
       const newMenu1 = state.menu.map((item) => {
-        if (item.id === action.data) {
+        if (item._id === action.data) {
           if (item.quantity > 0)
             return { ...item, quantity: item.quantity - 1 };
           else {
@@ -56,7 +58,9 @@ const Reducer = (state: state, action: actionType): state => {
         }
       });
       return { ...state, menu: newMenu1 };
-
+    //  to set the menu on refresh
+    case "SET_MENU":
+      return { ...state, menu: action.data };
     default:
       return state;
   }
