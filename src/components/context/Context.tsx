@@ -8,6 +8,7 @@ export type actionType = {
 };
 const initialState = {
   isLoggedIn: false,
+  isAdminLoggedIn: false,
   name: "",
   menu: [
     {
