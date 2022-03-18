@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Route, Routes } from "react-router";
 import { context } from "./components/context/Context";
 import HomeBeforeLogin from "./components/user/before-login/Home/Home";
@@ -9,9 +9,19 @@ import Profile from "./components/user/profile/Profile";
 import Cart from "./components/user/cart/Cart";
 import Register from "./components/user/register/Register";
 import Login from "./components/user/login/Login";
+import axios from "axios";
+import Orders from "./components/user/orders/Orders";
+import NotFoundPage from "./components/notfoundpage/NotFoundPage";
 
 function App() {
   const { state, dispatch } = useContext(context);
+  useEffect(() => {
+    const retainLogin = async () => {
+      const data = await axios.get("http://localhost:8000/retainlogin");
+      dispatch({ type: "LOGIN", data: data.data });
+    };
+    retainLogin();
+  }, []);
   return (
     <>
       <NavBar />
@@ -19,10 +29,27 @@ function App() {
         <Routes>
           <Route path="/" element={<HomeBeforeLogin />} />
           <Route path="/menu" element={<Menu />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/user/cart" element={<Cart />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+          <Route
+            path="/profile"
+            element={state.isLoggedIn ? <Profile /> : <NotFoundPage />}
+          />
+          <Route
+            path="/user/cart"
+            element={state.isLoggedIn ? <Cart /> : <NotFoundPage />}
+          />
+          <Route
+            path="/register"
+            element={state.isLoggedIn ? <NotFoundPage /> : <Register />}
+          />
+          <Route
+            path="/login"
+            element={state.isLoggedIn ? <NotFoundPage /> : <Login />}
+          />
+          <Route
+            path="/orders"
+            element={state.isLoggedIn ? <Orders /> : <NotFoundPage />}
+          />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
     </>

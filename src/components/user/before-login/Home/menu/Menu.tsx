@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { context } from "../../../../context/Context";
 import MenuItem from "../menuitem/MenuItem";
 import "./menu.scss";
@@ -30,6 +31,9 @@ const Menu = () => {
       {state.menu.map((item: menu) => {
         return <MenuItem key={item._id} item={item} />;
       })}
+      <p>
+        Go to <Link to={`/user/cart`}>Cart</Link> to place order{" "}
+      </p>
     </div>
   );
 };

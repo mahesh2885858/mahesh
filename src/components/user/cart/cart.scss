@@ -7,6 +7,10 @@
   align-items: center;
   justify-content: center;
   gap: 2em;
+  button {
+    padding: 0.5em;
+    font-size: 1rem;
+  }
 }
 .cart-table-container {
   padding: 1em;

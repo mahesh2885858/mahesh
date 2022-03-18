@@ -1,4 +1,7 @@
+import axios from "axios";
 import React, { useContext } from "react";
+import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 import { context } from "../../context/Context";
 import "./cart.scss";
 type itemType = {
@@ -9,6 +12,15 @@ type itemType = {
 };
 const Cart = () => {
   const { state, dispatch } = useContext(context);
+  const navigate = useNavigate();
+  const placeOrder = async () => {
+    const data = await axios.put("http://localhost:8000/placeorder", [
+      ...orderedItems,
+    ]);
+    dispatch({ type: "LOGIN", data: data.data });
+    dispatch({ type: "CLEAR_CART" });
+    navigate("/");
+  };
   const orderedItems: itemType[] = state.menu.filter(
     (item: itemType) => item.quantity > 0
   );
@@ -16,7 +28,6 @@ const Cart = () => {
     (total, item) => (total += item.quantity * item.unitPrice),
     0
   );
-  console.log(totalCost);
   return (
     <div className="cart-container">
       <div className="cart-table-container">
@@ -44,7 +55,13 @@ const Cart = () => {
         </table>
         <p>Your total order cost is : {totalCost}</p>
       </div>
-      <button>Place Order</button>
+      {orderedItems.length > 0 ? (
+        <button onClick={placeOrder}>Place Order</button>
+      ) : (
+        <p>
+          order your favorite from our delicious <Link to={`/menu`}>Menu</Link>
+        </p>
+      )}
     </div>
   );
 };
