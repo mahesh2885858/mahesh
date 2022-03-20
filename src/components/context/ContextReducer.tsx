@@ -43,6 +43,10 @@ const Reducer = (state: state, action: actionType): state => {
         return { ...item, quantity: 0 };
       });
       return { ...state, menu: clearedMenu };
+    case "ADMIN_LOGIN":
+      return { ...state, isAdminLoggedIn: true, name: action.data.name };
+    case "GET_ALL_ORDERS":
+      return { ...state, allOrders: action.data };
     default:
       return state;
   }

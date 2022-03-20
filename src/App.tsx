@@ -7,11 +7,15 @@ import "./app.scss";
 import Menu from "./components/user/before-login/Home/menu/Menu";
 import Profile from "./components/user/profile/Profile";
 import Cart from "./components/user/cart/Cart";
+import AdminNavBar from "./components/admin/adminNavbar/AdminNavBar";
 import Register from "./components/user/register/Register";
 import Login from "./components/user/login/Login";
 import axios from "axios";
 import Orders from "./components/user/orders/Orders";
 import NotFoundPage from "./components/notfoundpage/NotFoundPage";
+import AdminHome from "./components/admin/home/AdminHome";
+import AllOrders from "./components/admin/allorders/AllOrders";
+import AddItem from "./components/admin/addItem/AddItem";
 
 function App() {
   const { state, dispatch } = useContext(context);
@@ -20,14 +24,24 @@ function App() {
       const data = await axios.get("http://localhost:8000/retainlogin");
       dispatch({ type: "LOGIN", data: data.data });
     };
+    const retainAminLogin = async () => {
+      const data = await axios.get("http://localhost:8000/admin/adminretain");
+      dispatch({ type: "ADMIN_LOGIN", data: data.data });
+    };
     retainLogin();
+    retainAminLogin();
   }, []);
   return (
     <>
-      <NavBar />
+      {state.isAdminLoggedIn ? <AdminNavBar /> : <NavBar />}
       <div className="app-container">
         <Routes>
-          <Route path="/" element={<HomeBeforeLogin />} />
+          <Route
+            path="/"
+            element={
+              state.isAdminLoggedIn ? <AdminHome /> : <HomeBeforeLogin />
+            }
+          />
           <Route path="/menu" element={<Menu />} />
           <Route
             path="/profile"
@@ -49,7 +63,10 @@ function App() {
             path="/orders"
             element={state.isLoggedIn ? <Orders /> : <NotFoundPage />}
           />
+          <Route path="/admin" element={<AdminHome />} />
           <Route path="*" element={<NotFoundPage />} />
+          <Route path="/admin/allorders" element={<AllOrders />} />
+          <Route path="/admin/additem" element={<AddItem />} />
         </Routes>
       </div>
     </>

@@ -31,6 +31,8 @@ const initialState = {
     },
   ],
   orders: [],
+  allOrders: [],
+  adminRole: "",
 };
 export const context = createContext<any>({});
 

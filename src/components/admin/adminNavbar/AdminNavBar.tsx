@@ -22,7 +22,7 @@ const AdminNavBar = () => {
         <input type="checkbox" id="menu-responsive" />
         <div className="nav-right">
           {state.isAdminLoggedIn ? (
-            <Link to={`/admin/orders`}>All Orders</Link>
+            <Link to={`/admin/allorders`}>All Orders</Link>
           ) : (
             <Link to={`/register`}>Register</Link>
           )}
